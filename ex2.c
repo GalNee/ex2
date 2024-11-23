@@ -54,23 +54,44 @@ int main() {
             Please notice: the number has to be bigger than 0.
             */
             case 2:
-                int num;
+                int num, rightSum = 0, leftSum = 0, digitCounter = 0;
                 printf("Enter a number:\n");
                 while (scanf("%d", &num) && num < 1) {
                     printf("Only positive number is allowed, please try again:\n");
                 }
+                int temp = num;
+                while (temp > 0) {
+                    digitCounter++;
+                    temp /= 10;
+                }
+                for (int i = 0; i < digitCounter / 2; i++) {
+                    rightSum += num % 10;
+                    num /= 10;
+                }
+                if (digitCounter % 2 == 1) num /= 10;
+                for (int i = 0; i < digitCounter / 2; i++) {
+                    leftSum += num % 10;
+                    num /= 10;
+                }
+                if (rightSum == leftSum) {
+                    printf("This number is balanced and brings harmony!\n");
+                } else {
+                    printf("This number isn't balanced and destroys harmony.\n");
+                }
                 break;
+                // Case 3: determine whether the sum of the proper divisors (od an integer) is greater than the number itself
+                /* Examples:
+                Abudant: 12, 20, 24
+                Not Abudant: 3, 7, 10
+                Please notice: the number has to be bigger than 0.
+                */
+            case 3:
+
             default:
 
                 break;
 
 
-            // Case 3: determine whether the sum of the proper divisors (od an integer) is greater than the number itself
-            /* Examples:
-            Abudant: 12, 20, 24
-            Not Abudant: 3, 7, 10
-            Please notice: the number has to be bigger than 0.
-            */
 
             // Case 4: determine wether a number is a prime.
             /* Examples:
