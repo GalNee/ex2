@@ -26,7 +26,7 @@ int main() {
                 printf("Enter symbols for the eyes, nose, and mouth:\n");
                 char eye, nose, mouth;
                 scanf(" %c %c %c", &eye, &nose, &mouth);
-                printf("Enter faze size:\n");
+                printf("Enter face size:\n");
                 int size;
 
             //asking the user for the size of the smile and continuing only if positive and even
@@ -109,11 +109,16 @@ int main() {
             */
             case 4:
                 printf("Enter a number:\n");
-                int num1, isPrime = 1;
+                int num1, flippedNum = 0, isPrime = 1;
                 while (scanf("%d", &num1) && num1 < 1) {
                     printf("Only positive number is allowed, please try again:\n");
                 }
-
+                int temp0 = num1;
+                while (temp0 != 0) {
+                    flippedNum *= 10;
+                    flippedNum += temp0 % 10;
+                    temp0 /= 10;
+                }
                 if (num1 > 1) {
                     for (int i = 2; i < num1; i++) {
                         if (num1 % i == 0) {
@@ -123,8 +128,15 @@ int main() {
                     }
                 } else isPrime = 0;
                 if (isPrime) {
-                    printf("This number completes the circle of joy!\n");
-                } else printf("The circle remains incomplete.\n");
+                    for (int i = 2; i < num1; i++) {
+                        if (flippedNum % i == 0) {
+                            isPrime = 0;
+                            break;
+                        }
+                    }
+                }
+                if (isPrime)printf("This number completes the circle of joy!\n");
+                else printf("The circle remains incomplete.\n");
                 break;
             // Happy numbers: Print all the happy numbers between 1 to the given number.
             // Happy number is a number which eventually reaches 1 when replaced by the sum of the square of each digit
@@ -168,8 +180,8 @@ int main() {
                 printf("Enter a smile and cheer number:\n");
                 int smile, cheer, max;
                 while (scanf(" smile:%d, cheer:%d", &smile, &cheer) != 2 || smile < 1 || cheer < 1 ||
-                    smile == cheer) {
-                    printf("Only 2 different positive numbers in the given format are allowed for"
+                       smile == cheer) {
+                    printf("Only 2 different positive numbers in the given format are allowed for "
                         "the festival, please try again:\n");
                     //clean the buffer
                     scanf("%*[^\n]");
@@ -179,7 +191,7 @@ int main() {
                 while (scanf("%d", &max) && max < 1) {
                     printf("Only positive maximum number is allowed, please try again:\n");
                 }
-                for (int i = 1; i < max; i++) {
+                for (int i = 1; i <= max; i++) {
                     if (i % cheer == 0 && i % smile == 0) printf("Festival!\n");
                     else if (i % cheer == 0) printf("Cheer!\n");
                     else if (i % smile == 0) printf("Smile!\n");
